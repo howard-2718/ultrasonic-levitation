@@ -1,0 +1,9 @@
+# LF for all text files
+* text=auto
+
+# LF for .ipynb files
+*.ipynb text eol=lf 
+
+# Binary files
+*.png binary  
+*.pdf binary  
