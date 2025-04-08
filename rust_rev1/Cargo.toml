@@ -1,0 +1,21 @@
+[package]
+name = "rev1"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+mock_ftdi = []
+
+[dev-dependencies]
+rev1.path = "."
+rev1.features = ["mock_ftdi"]
+
+[dependencies]
+
+[dependencies.libftd2xx]
+version = "0.32.3"
+# statically link the vendor library, defaults to dynamic if not set
+# this will make things "just work" on Linux and Windows
+features = ["static"]

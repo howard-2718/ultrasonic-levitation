@@ -1,0 +1,116 @@
+[package]
+name = "rust_sonic_surface"
+version = "0.0.0"
+authors = ["Kevin"]
+edition = "2021"
+default-run = "main"
+
+[dependencies]
+serialport = "4.2.2"
+eframe = "0.19"
+reqwest = { version = "0.11", features = ["json"] }
+serde = "1"
+serde_derive = "1"
+tokio = { version = "1", features = ["full"] }
+ndarray = "0.15"
+ndarray-linalg = "0.15"
+redis = "0.24.0"
+bincode = "1.3.3"
+zmq = "0.10.0"
+num = "0.4.1"
+scilib = "1.0.0"
+rmp-serde = "1.1.2"
+rev1 = { path = "../rust_rev1/" }
+serde_json = "1.0.114"
+redis-async = "0.17.0"
+futures = "0.3.30"
+futures-util = "0.3.30"
+futures-channel = "0.3.30"
+futures-sink = "0.3.30"
+lazy_static = "1.4.0"
+serde-pickle = "1.1.1"
+
+[[bin]]
+name = "circle_test"
+path = "src/scripts/circle_test.rs"
+
+[[bin]]
+name = "cube_test"
+path = "src/cube_test.rs"
+
+[[bin]]
+name = "square_test"
+path = "src/square_test.rs"
+
+[[bin]]
+name = "square_test_no_redis"
+path = "src/square_test_no_redis.rs"
+
+[[bin]]
+name = "line_test"
+path = "src/scripts/line_test.rs"
+
+[[bin]]
+name = "redis_positions_to_serial"
+path = "src/redis_positions_to_serial.rs"
+
+[[bin]]
+name = "onoff"
+path = "src/scripts/onoff.rs"
+
+[[bin]]
+name = "vertical_test"
+path = "src/scripts/vertical_test.rs"
+
+[[bin]]
+name = "redis_positions_to_ftdi"
+path = "src/redis_positions_to_ftdi.rs"
+
+[[bin]]
+name = "gen_pressure_field"
+path = "src/scripts/gen_pressure_field.rs"
+
+[[bin]]
+name = "circle_test_no_redis"
+path = "src/circle_test_no_redis.rs"
+
+[[bin]]
+name = "tones"
+path = "src/scripts/tones.rs"
+
+[[bin]]
+name = "tones_ftdi"
+path = "src/scripts/tones_ftdi.rs"
+
+[[bin]]
+name = "output_pwm"
+path = "src/scripts/output_pwm.rs"
+
+[[bin]]
+name = "line_test_no_redis"
+path = "src/line_test_no_redis.rs"
+
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "midi_out"
+path = "src/midi_out.rs"
+
+[[bin]]
+name = "play_midi"
+path = "src/play_midi.rs"
+
+[[bin]]
+name = "two_point_juggle"
+path = "src/two_point_juggle.rs"
+
+[[bin]]
+name = "turn_off"
+path = "src/turn_off.rs"
+
+[[bin]]
+name = "open_sauce"
+path = "src/open_sauce.rs"
