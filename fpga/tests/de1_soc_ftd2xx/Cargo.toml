@@ -1,0 +1,12 @@
+[package]
+name = "de1_soc_ftd2xx"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Include the name of your library crate as a dependency
+rev1 = { path = "../../../rust_rev1/" }
+
+[[bin]]
+name = "de1_soc_ftd2xx"
+path = "main.rs"

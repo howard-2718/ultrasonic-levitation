@@ -12,6 +12,8 @@ This repository consists of:
 
 To learn more about our project, see either our detailed [final report](final-report.pdf) or our easy-to-digest poster, shown below.
 
+For more detailed instructions on how to setup the system, please refer to [our progenitors' repository](https://github.com/ultrasonic-homies/ultrasonic-holography/tree/main).
+
 ![Poster - Physics](/img/poster_1.png)
 ![Poster - Software](/img/poster_2.png)
 ![Poster - Hardware](/img/poster_3.png)

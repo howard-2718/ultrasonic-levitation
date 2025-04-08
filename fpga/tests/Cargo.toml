@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "de1_soc_ftd2xx",
+    "de1_soc_top",
+    "two_boards",
+    "board_interface",
+    "list_devices",
+    "phase_calibration",
+]
+resolver = "2"

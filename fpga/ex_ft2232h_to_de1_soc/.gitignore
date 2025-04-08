@@ -1,0 +1,9 @@
+*
+!.gitignore
+!proto245.tcl
+!README.md
+!*.sv
+!*.svh
+!*.sdc
+!*.sh
+!*.sof
