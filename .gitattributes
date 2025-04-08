@@ -2,7 +2,9 @@
 * text=auto
 
 # LF for .ipynb files
+*.py text eol=lf
 *.ipynb text eol=lf 
+*.md text eol=lf
 
 # Binary files
 *.png binary  
