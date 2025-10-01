@@ -8,8 +8,6 @@ import sys
 import redis
 import time
 
-import numpy as np
-
 def get_time():
     return time.time_ns() * 1e-9
 
