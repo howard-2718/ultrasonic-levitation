@@ -59,8 +59,8 @@ class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setGeometry(100, 100, 1080, 1180)  # Set window size
-        self.setFixedSize(1080, 1180)  # Disable resizing
+        self.setGeometry(100, 100, 680, 780)  # Set window size
+        self.setFixedSize(680, 780)  # Disable resizing
 
         self.setWindowTitle('Image Path Control')
 
@@ -121,6 +121,8 @@ class MyWidget(QWidget):
         self.path = None
         self.scaled_path = None
 
+        self.path_pixmap = None
+
     def load_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select Image", "", "Image Files (*.png *.jpg *.jpeg)")
 
@@ -174,7 +176,10 @@ class MyWidget(QWidget):
 
         # Publish position of start point to board
         print(f"Publishing start position: x - {self.scaled_path[0][0]:.4f}, y - {self.scaled_path[0][1]:.4f}, z - {self.board_z:.4f}, at time t = {get_time():.6f}")
-        # self.redis.publish("positions", repr([[self.scaled_path[0][0], self.scaled_path[0][1], self.board_z]]).encode('utf-8'))
+        
+        # Might need to divide all dimensions by 100
+        msg_packed = repr([[self.scaled_path[0][0] / 100, self.scaled_path[0][1] / 100, self.board_z / 100]]).encode('utf-8')
+        self.redis.publish("positions", msg_packed)
 
         self.skeleton_loaded = True
 
@@ -187,6 +192,61 @@ class MyWidget(QWidget):
     def execute(self):
         if not self.skeleton_loaded:
             return
+        
+        # Clear the pixmap
+        self.path_pixmap = QtGui.QPixmap(self.image_label.width(), self.image_label.height())
+        self.path_pixmap.fill(Qt.black)
+
+        self.image_label.setPixmap(self.path_pixmap)
+
+        self.path_index = 0
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.draw_next_point)
+        self.timer.timeout.connect(self.send_positions)
+
+        interval_ms = int(self.interval_input.text())
+        self.timer.start(interval_ms)
+
+    def send_positions(self):
+        point = self.scaled_path[self.path_index]
+
+        print(f"Sending coordinates: x - {point[0]:.4f}, y - {point[1]:.4f}, z - {self.board_z:.4f}, at time t = {get_time():.6f}")
+        
+        # Might need to divide all dimensions by 100
+        msg_packed = repr([[point[0] / 100, point[1] / 100, self.board_z / 100]]).encode('utf-8')
+        self.redis.publish("positions", msg_packed)
+
+    def draw_next_point(self):
+        if (self.path_index + 1) >= len(self.scaled_path):
+            self.timer.stop()
+            print("Finished drawing path/sending positions.")
+            return
+
+        point = self.scaled_path[self.path_index]
+        # print(f"Drawing point {self.path_index}: x - {point[0]:.4f}, y - {point[1]:.4f}")
+        self.draw_pixel(point[0], point[1])
+        self.path_index += 1
+
+    def draw_pixel(self, x, y):
+        # Original image dimensions
+        img_h, img_w = self.img.shape
+        label_w = self.image_label.width()
+        label_h = self.image_label.height()
+
+        # Reconvert back to image pixel
+        x = x / self.side_length * img_w;
+        y = y / self.side_length * img_h;
+
+        # Scale coordinates to GUI 
+        x_disp = int(x * label_w / img_w)
+        y_disp = int(y * label_h / img_h)
+
+        painter = QtGui.QPainter(self.path_pixmap)
+        painter.setPen(QtGui.QColor(255, 255, 255))
+        painter.drawPoint(x_disp, y_disp)
+        painter.end()
+
+        self.image_label.setPixmap(self.path_pixmap)
 
 
 if __name__ == '__main__':
