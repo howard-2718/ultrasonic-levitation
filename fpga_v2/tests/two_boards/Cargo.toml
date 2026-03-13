@@ -1,0 +1,12 @@
+[package]
+name = "two_boards"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Include the name of your library crate as a dependency
+rev1 = { path = "../../../rust_rev1/" }
+
+[[bin]]
+name = "two_boards"
+path = "main.rs"

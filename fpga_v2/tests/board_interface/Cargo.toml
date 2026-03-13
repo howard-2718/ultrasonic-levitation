@@ -1,0 +1,18 @@
+[package]
+name = "board_interface"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Include the name of your library crate as a dependency
+rev1 = { path = "../../../rust_rev1/" }
+
+[dependencies.libftd2xx]
+version = "0.32.3"
+# statically link the vendor library, defaults to dynamic if not set
+# this will make things "just work" on Linux and Windows
+features = ["static"]
+
+[[bin]]
+name = "board_interface"
+path = "main.rs"
