@@ -20,8 +20,8 @@ FPGA_PRIMARY_PINOUT = {
     "/PRIMARY_WRN": "ft_wrn",
     "/PRIMARY_RDN": "ft_rdn",
     "/FPGA_RESET": "ext_rst",
-    **{f"/Connector2/IO_A{i+1}": f"trans[{2*i}]" for i in range(DRIVERS_PER_FPGA)},
-    **{f"/Connector2/IO_B{i+1}": f"trans[{2*i+1}]" for i in range(DRIVERS_PER_FPGA)},
+    **{f"/Connector2/IO_A{i+1}": f"a" for i in range(DRIVERS_PER_FPGA)},
+    **{f"/Connector2/IO_B{i+1}": f"a" for i in range(DRIVERS_PER_FPGA)},
     "/SYNC": "sync_out"
 }
 
@@ -41,7 +41,7 @@ FPGA_SECONDARY_PINOUT = {
     "/SECONDARY_WRN": "ft_wrn",
     "/SECONDARY_RDN": "ft_rdn",
     "/FPGA_RESET": "ext_rst",
-    **{f"/FPGA secondary/IO_A_{i+1}": f"trans[{2*i}]" for i in range(DRIVERS_PER_FPGA)},
-    **{f"/FPGA secondary/IO_B_{i+1}": f"trans[{2*i+1}]" for i in range(DRIVERS_PER_FPGA)},
+    **{f"/FPGA secondary/IO_A_{i+1}": f"a" for i in range(DRIVERS_PER_FPGA)},
+    **{f"/FPGA secondary/IO_B_{i+1}": f"a" for i in range(DRIVERS_PER_FPGA)},
     "/SYNC": "sync_in"
 }

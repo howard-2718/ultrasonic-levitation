@@ -1,8 +1,10 @@
 import pcbnew
 import csv
 
-FPGA_REFERENCE = "U10"     #U12 - Primary, U10 - Secondary
-OUTPUT_FILE = "fpga_pinout_secondary.csv"
+#Run this in KiCAD scripting window to extract pinouts
+
+REFERENCES = ["J8","J14"]    #U12 - Primary, U10 - Secondary
+OUTPUT_FILE = "conn_pinout_secondary.csv"
 
 board = pcbnew.GetBoard()
 
@@ -10,7 +12,7 @@ rows = []
 
 for footprint in board.GetFootprints():
 
-    if footprint.GetReference() == FPGA_REFERENCE:
+    if footprint.GetReference() in REFERENCES:
 
         for pad in footprint.Pads():
 
@@ -28,7 +30,7 @@ for footprint in board.GetFootprints():
             ])
 
 # Sort pins by pad name (nice for FPGA pinouts)
-rows.sort(key=lambda x: x[1])
+# rows.sort(key=lambda x: x[1])
 
 with open(OUTPUT_FILE, "w", newline="") as f:
 
