@@ -10,7 +10,7 @@ This repository consists of:
 * Files created by [our progenitors](https://github.com/ultrasonic-homies/ultrasonic-holography/tree/main), which are required for setup and operation of the system, and
 * Files created by us, which add improved functionality and the ability to test system behaviours.
 
-To learn more about our project, see either our detailed [final report](final-report.pdf) or our easier-to-digest poster, shown below.
+To learn more about our project, see either our detailed [final report](final-report_459.pdf) or our easier-to-digest poster, shown below.
 
 For more detailed instructions on how to setup the system, please refer to [our progenitors' repository](https://github.com/ultrasonic-homies/ultrasonic-holography/tree/main). We have renamed the *rust_sonic_surface* folder to *rust_solver*.
 
@@ -18,3 +18,5 @@ For more detailed instructions on how to setup the system, please refer to [our 
 ![Poster - Software](/img/poster_2.png)
 ![Poster - Hardware](/img/poster_3.png)
 ![Poster - System Characterization](/img/poster_4.png)
+
+*Note: If you'd like to take a look a previous iteration of our poster, you can find it inside the [img](/img/) folder.*
